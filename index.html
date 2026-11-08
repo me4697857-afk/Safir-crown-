@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Sc | ماكينات عد النقود والخزن الحديدية</title>
+<title>Safir Crown | الخزن الحديدية</title>
 <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#09090a;--panel:#141416;--line:#2a2820;--gold:#d9a93a;--gold2:#f2d27a;--ink:#f4ecda;--mute:#9a9484;color-scheme:dark}
@@ -71,8 +71,8 @@ footer img{height:64px;border-radius:50%;margin-bottom:10px}
 <img class="lg" src="logo.png.jpeg" alt="شعار SD">
 <nav>
 <a href="#advisor">اختار الجهاز المناسب</a>
-<div class="dd"><a href="#products" data-f="safe">الخزن ▾</a><div class="menu" id="m-safe"></div></div>
-<div class="dd"><a href="#products" data-f="cab">الخزانات ▾</a><div class="menu" id="m-cab"></div></div>
+<a href="#products" data-f="small">خزن صغيرة</a>
+<a href="#products" data-f="large">خزن كبيرة</a>
 <a href="#products" data-f="all">كل المنتجات</a>
 <a href="#contact">تواصل معنا</a>
 </nav>
@@ -82,8 +82,8 @@ footer img{height:64px;border-radius:50%;margin-bottom:10px}
 <main>
 <section class="hero"><div class="wrap">
 <div>
-<h1>فلوسك في <em>أمان</em>، وعدّها بدقة</h1>
-<p>ماكينات عد وكشف النقود وخزن حماية للمحلات والشركات والبيوت. جاوب على 3 أسئلة وهنرشحلك الأنسب لشغلك.</p>
+<h1>مقتنياتك في <em>أمان</em></h1>
+<p>خزن حديدية للمنازل والمحلات والصيدليات والشركات والبنوك. اختار مكان الاستخدام وهنرشحلك الخزنة المناسبة.</p>
 <div class="cta"><a class="btn" href="#advisor">ابدأ الترشيح</a><a class="btn ghost" href="#products">شوف المنتجات</a></div>
 </div>
 <img class="lg" src="logo.png.jpeg" alt="شعار SD">
@@ -91,7 +91,7 @@ footer img{height:64px;border-radius:50%;margin-bottom:10px}
 
 <section id="advisor"><div class="wrap adv">
 <h2>إيه اللي محتاجه؟</h2>
-<p class="sub">3 أسئلة سريعة ونرشحلك ماكينة عد أو خزنة.</p>
+<p class="sub">اختار مكان الاستخدام وحجم الخزنة المناسب.</p>
 <div class="bar"><i id="pb"></i></div>
 <div id="stage"></div>
 </div></section>
@@ -106,7 +106,7 @@ footer img{height:64px;border-radius:50%;margin-bottom:10px}
 
 <footer id="contact"><div class="wrap">
 <img class="lg" src="logo.png.jpeg" alt="SD">
-<p>SD لماكينات عد النقود والخزن الحديدية</p>
+<p>Safir Crown للخزن الحديدية</p>
 <a class="btn" id="wa1" href="#">كلمنا على واتساب</a>
 </div></footer>
 
@@ -125,58 +125,48 @@ cab:'<svg viewBox="0 0 48 48"><rect x="9" y="5" width="30" height="38" rx="2"/><
 count:'<svg viewBox="0 0 48 48"><rect x="6" y="18" width="36" height="20" rx="3"/><path d="M12 18v-6h24v6M14 28h20M18 38v4m12-4v4"/></svg>',
 safe:'<svg viewBox="0 0 48 48"><rect x="7" y="8" width="34" height="32" rx="3"/><circle cx="26" cy="24" r="7"/><path d="M26 17v14M19 24h14M12 40v3m24-3v3"/></svg>'};
 
-/* المنتجات: t = count (عد نقود) / safe (خزنة) / cab (خزانة) ، l = مستوى 1-3 */
+/* المنتجات الفعلية فقط. الحجم small أو large؛ الاستخدامات تُستخدم في الترشيحات. */
 const P=[
-{t:'safe',l:2,n:'خزنة كراون SB16 – ديجيتال أو 2 كالون',img:'crown-sb16.jpg.jpeg',images:['crown-sb16.jpg.jpeg','crown-sb16.jpg (2).jpeg'],f:['مقاومة للحريق لمدة ساعة عند 1200° وفق المواصفات المعلنة','قفل ديجيتال ومفتاح طوارئ، ومتاح موديل 2 كالون','وزن 35 كجم ورف متحرك | مقاس 32 × 42 × 32 سم']},
-{t:'count',l:1,n:'عداد نقود أساسي',f:['عد سريع للأوراق','كشف مزيف بالأشعة فوق البنفسجية','مناسب للمحلات الصغيرة']},
-{t:'count',l:2,n:'عداد نقود بكاشف مزيف متقدم',f:['كشف UV + مغناطيسي + أشعة تحت الحمراء','شاشة عرض واضحة','مناسب للمحلات والصيدليات والسوبر ماركت']},
-{t:'count',l:3,n:'عداد وفارز قيم مختلطة',f:['عد وفرز فئات مختلطة','دقة عالية للأحجام الكبيرة','مناسب للشركات والصرافة والبنوك']},
-{t:'safe',l:1,n:'خزنة منزلية',f:['قفل رقمي ومفتاح طوارئ','حجم صغير يتثبت في الحيطة أو الأرض','مناسبة للبيت والشقق']},
-{t:'safe',l:2,n:'خزنة مكاتب ومحلات',f:['جسم حديد مقاوم للكسر','قفل إلكتروني','مناسبة للمكاتب والمحلات']},
-{t:'safe',l:3,n:'خزنة ثقيلة مقاومة للحريق',f:['حماية عالية ضد السرقة والحريق','قفل مزدوج','مناسبة للشركات والمخازن والبنوك']},
-{t:'safe',l:1,n:'خزنة جدارية مخفية',f:['تتثبت داخل الحيطة','مخفية عن الأنظار','مناسبة للبيوت']},
-{t:'safe',l:2,n:'خزنة ببصمة',f:['فتح بالبصمة','سريعة في الاستخدام','مناسبة للمكاتب والمحلات']},
-{t:'cab',l:1,n:'خزانة مفاتيح',f:['تنظيم وحماية المفاتيح','قفل بمفتاح أو رقمي','للمكاتب والفنادق والعمارات']},
-{t:'cab',l:2,n:'خزانة ملفات حديد',f:['أدراج وأرفف حديد','قفل مركزي','للمكاتب والأرشيف']},
-{t:'cab',l:3,n:'خزانة لوكر للموظفين',f:['أبواب متعددة بقفل لكل باب','حديد متين','للمصانع والشركات والنوادي']}
+{t:'safe',size:'small',uses:['home','pharmacy','shop','supermarket'],n:'خزنة كراون SB16 – ديجيتال أو 2 كالون',img:'crown-sb16.jpg.jpeg',images:['crown-sb16.jpg.jpeg','crown-sb16.jpg (2).jpeg'],f:['مقاومة للحريق لمدة ساعة عند 1200° وفق المواصفات المعلنة','قفل ديجيتال ومفتاح طوارئ، ومتاح موديل 2 كالون','وزن 35 كجم ورف متحرك | مقاس 32 × 42 × 32 سم']}
 ];
 
 const wa=m=>`https://wa.me/${PHONE}?text=${encodeURIComponent(m)}`;
 ['wa0','wa1'].forEach(i=>document.getElementById(i).href=wa('السلام عليكم، عايز استفسر عن منتجاتكم'));
 
-const LBL={count:'ماكينات عد نقود',safe:'خزن حماية',cab:'خزانات'};
+const LBL={safe:'خزن حديدية'};
 const card=p=>`<div class="card"><div class="pic">${p.images?`<div class="gallery" data-images="${p.images.map(encodeURIComponent).join("|")}"><img src="${p.images[0]}" alt="${p.n}" loading="lazy"><button type="button" class="gallery-prev" aria-label="الصورة السابقة">‹</button><button type="button" class="gallery-next" aria-label="الصورة التالية">›</button><span class="gallery-counter">1 / ${p.images.length}</span></div>`:p.img?`<img src="${p.img}" alt="${p.n}" loading="lazy" style="width:100%;height:100%;object-fit:contain">`:ICO[p.t]}</div><div class="b"><span class="cat">${LBL[p.t]}</span><h3>${p.n}</h3><ul>${p.f.map(x=>`<li>${x}</li>`).join('')}</ul><a class="btn" href="${wa('عايز أطلب: '+p.n)}">اطلب / اسأل عن السعر</a></div></div>`;
 
 document.getElementById('grid').addEventListener('click',e=>{const btn=e.target.closest('.gallery-prev,.gallery-next');if(!btn)return;const gallery=btn.closest('.gallery');const images=gallery.dataset.images.split('|').map(decodeURIComponent);const image=gallery.querySelector('img');let index=images.indexOf(image.getAttribute('src'));index=(index+(btn.classList.contains('gallery-next')?1:-1)+images.length)%images.length;image.src=images[index];gallery.querySelector('.gallery-counter').textContent=(index+1)+' / '+images.length;});
 let flt='all';
-function grid(){document.getElementById('grid').innerHTML=P.filter(p=>flt=='all'||p.t==flt).map(card).join('')}
-document.getElementById('chips').innerHTML=[['all','الكل'],['count','ماكينات عد النقود'],['safe','الخزن'],['cab','الخزانات']].map(([k,v])=>`<button class="chip${k=='all'?' on':''}" data-k="${k}">${v}</button>`).join('');
-function setF(k){flt=k;[...document.getElementById('chips').children].forEach(c=>c.classList.toggle('on',c.dataset.k==k));grid()}
+const USES=[['all','كل الخزن'],['small','خزن صغيرة'],['large','خزن كبيرة'],['home','المنزل والشقق'],['pharmacy','الصيدليات'],['shop','المحلات'],['supermarket','السوبر ماركت'],['villa','الفلل'],['office','الشركات والمكاتب'],['exchange','الصرافة'],['bank','البنوك']];
+function eligible(p,k){return k==='all'||p.size===k||(p.uses||[]).includes(k)}
+function grid(){document.getElementById('grid').innerHTML=P.filter(p=>eligible(p,flt)).map(card).join('')||'<p class="sub">سيتم إضافة الخزن المناسبة لهذا القسم قريبًا.</p>'}
+document.getElementById('chips').innerHTML=USES.map(([k,v])=>`<button class="chip${k==='all'?' on':''}" data-k="${k}">${v}</button>`).join('');
+function setF(k){flt=k;[...document.getElementById('chips').children].forEach(c=>c.classList.toggle('on',c.dataset.k===k));grid()}
 document.getElementById('chips').onclick=e=>{const k=e.target.dataset.k;if(k)setF(k)};
 grid();
-['safe','cab'].forEach(k=>{document.getElementById('m-'+k).innerHTML=`<a href="#products" data-f="${k}"><b>عرض الكل</b></a>`+P.filter(p=>p.t==k).map(p=>`<a href="#products" data-f="${k}">${p.n}</a>`).join('')});
 document.querySelector('nav').onclick=e=>{const a=e.target.closest('[data-f]');if(a)setF(a.dataset.f)};
 
-/* أسئلة الترشيح */
+/* الترشيح حسب مكان الاستخدام والحجم */
 const Q=[
-{q:'إيه مجال شغلك أو مكان الاستخدام؟',o:[['بيت أو فيلا','home',1],['محل / صيدلية / سوبر ماركت','shop',2],['مكتب أو شركة','office',2],['صرافة / بنك / شركة كبيرة','big',3]]},
-{q:'محتاج إيه بالظبط؟',o:[['ماكينة عد نقود','count'],['خزنة حماية','safe'],['الاتنين','both']]},
-{q:'حجم الشغل أو قيمة الفلوس عندك؟',o:[['صغير','قليل: عد بسيط أو مبالغ محدودة',1],['متوسط','عد يومي ومبالغ معقولة',2],['كبير','مبالغ كبيرة وحركة كتير',3]]}];
+{q:'هتستخدم الخزنة فين؟',o:[['منزل أو شقة','home'],['صيدلية','pharmacy'],['محل','shop'],['سوبر ماركت','supermarket'],['فيلا','villa'],['شركة أو مكتب','office'],['صرافة','exchange'],['بنك','bank']]},
+{q:'إيه حجم الخزنة اللي تفضله؟',o:[['صغيرة','small'],['كبيرة','large']]}
+];
 let step=0,A=[];
 const st=document.getElementById('stage'),pb=document.getElementById('pb');
 function show(){
-pb.style.width=(step/3*100)+'%';
-if(step>=3)return result();
+pb.style.width=(step/Q.length*100)+'%';
+if(step>=Q.length)return result();
 const x=Q[step];
-st.innerHTML=`<p class="q">${x.q}</p><div class="opts">${x.o.map((o,i)=>`<button class="opt" data-i="${i}">${o[0]}${step==2?`<small>${o[1]}</small>`:''}</button>`).join('')}</div>${step?'<button class="back" id="bk">رجوع</button>':''}`;
-st.querySelector('.opts').onclick=e=>{const b=e.target.closest('.opt');if(!b)return;A[step]=x.o[+b.dataset.i];step++;show()};
+st.innerHTML=`<p class="q">${x.q}</p><div class="opts">${x.o.map((o,i)=>`<button class="opt" data-i="${i}">${o[0]}</button>`).join('')}</div>${step?'<button class="back" id="bk">رجوع</button>':''}`;
+st.querySelector('.opts').onclick=e=>{const btn=e.target.closest('.opt');if(!btn)return;A[step]=x.o[+btn.dataset.i];step++;show()};
 const bk=document.getElementById('bk');if(bk)bk.onclick=()=>{step--;show()};
 }
 function result(){
-const lvl=Math.max(A[0][2],A[2][2]),need=A[1][1];
-const pick=P.filter(p=>p.t!='cab'&&p.l==lvl&&(need=='both'||p.t==need));
-const msg=`مجال الشغل: ${A[0][0]} | المطلوب: ${A[1][0]} | الحجم: ${A[2][0]}. محتاج ترشيح.`;
-st.innerHTML=`<div class="res"><h3>رشحنالك</h3><p class="sub">بناءً على: ${A[0][0]}، ${A[1][0]}، حجم ${A[2][0]}.</p><div class="grid">${pick.map(card).join('')}</div><a class="btn" href="${wa(msg)}">ابعت اختياراتك على واتساب</a> <button class="back" id="rs">ابدأ من جديد</button></div>`;
+const use=A[0][1],size=A[1][1];
+const pick=P.filter(p=>p.size===size&&(p.uses||[]).includes(use));
+const msg=`مكان الاستخدام: ${A[0][0]} | حجم الخزنة: ${A[1][0]}. محتاج ترشيح.`;
+st.innerHTML=`<div class="res"><h3>رشحنالك</h3><p class="sub">حسب الاستخدام: ${A[0][0]}، والحجم: ${A[1][0]}.</p><div class="grid">${pick.length?pick.map(card).join(''):'<p class="sub">لسه بنضيف موديلات مناسبة لاختيارك. تواصل معانا ونساعدك.</p>'}</div><a class="btn" href="${wa(msg)}">اسأل عن الخزنة المناسبة على واتساب</a> <button class="back" id="rs">ابدأ من جديد</button></div>`;
 document.getElementById('rs').onclick=()=>{step=0;A=[];show()};
 }
 show();
