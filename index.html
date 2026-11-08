@@ -64,6 +64,16 @@ footer img{height:64px;border-radius:50%;margin-bottom:10px}
 .menu a:hover{background:var(--bg)}
 @media(max-width:760px){.hero .wrap{grid-template-columns:1fr}.hero img{order:-1;max-width:220px}nav{display:none}header .btn{margin-inline-start:auto}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+/* Product photo zoom viewer */
+.pic .gallery img,.pic>img{cursor:zoom-in}
+.zoom-overlay{position:fixed;inset:0;background:rgba(0,0,0,.94);z-index:9999;display:none;align-items:center;justify-content:center;flex-direction:column;padding:16px}
+.zoom-overlay.open{display:flex}
+.zoom-overlay .zoom-photo{max-width:95vw;max-height:83vh;object-fit:contain;cursor:zoom-in;transform-origin:center center;transition:transform .15s ease;touch-action:none}
+.zoom-overlay .zoom-photo.magnified{cursor:grab}
+.zoom-overlay .zoom-close{position:absolute;top:14px;right:18px;border:1px solid #d9a93a;background:#171717;color:white;border-radius:50%;width:42px;height:42px;font-size:28px;cursor:pointer;z-index:2}
+.zoom-overlay .zoom-tip{color:#eee;margin-top:12px;text-align:center;font-size:14px}
+body.zoom-open{overflow:hidden}
 </style>
 </head>
 <body>
@@ -143,6 +153,35 @@ const P=[
 {t:'safe',size:'large',uses:["villa","office","exchange","bank"],n:'خزنة كراون كبيرة – موديل 4',images:["WhatsApp Image 2026-11-01 at 17.47.43113.jpeg","WhatsApp Image 2026-11-01 at 17.47.44131.jpeg","WhatsApp Image 2026-11-01 at 17.47.1111.jpeg"],f:[]},
 {t:'safe',size:'small',uses:['home','pharmacy','shop','supermarket'],n:'خزنة كراون SB16 – ديجيتال أو 2 كالون',img:'crown-sb16.jpg.jpeg',images:['crown-sb16.jpg.jpeg','crown-sb16.jpg (2).jpeg'],f:['مقاومة للحريق لمدة ساعة عند 1200° وفق المواصفات المعلنة','قفل ديجيتال ومفتاح طوارئ، ومتاح موديل 2 كالون','وزن 35 كجم ورف متحرك | مقاس 32 × 42 × 32 سم']}
 ];
+
+
+/* Click any product image to enlarge; click again or scroll/pinch to zoom. */
+const zoom=document.createElement('div');
+zoom.className='zoom-overlay';
+zoom.setAttribute('role','dialog');
+zoom.setAttribute('aria-modal','true');
+zoom.setAttribute('aria-label','تكبير صورة المنتج');
+zoom.innerHTML='<button type="button" class="zoom-close" aria-label="إغلاق">×</button><img class="zoom-photo" alt=""><div class="zoom-tip">اضغط على الصورة للتكبير • عجلة الماوس للتقريب • اسحب الصورة للتحريك • Esc للإغلاق</div>';
+document.body.appendChild(zoom);
+const zoomPhoto=zoom.querySelector('.zoom-photo');
+let zoomScale=1,panX=0,panY=0,dragging=false,dragStartX=0,dragStartY=0;
+function paintZoom(){zoomPhoto.style.transform=`translate(${panX}px,${panY}px) scale(${zoomScale})`;zoomPhoto.classList.toggle('magnified',zoomScale>1)}
+function resetZoom(){zoomScale=1;panX=0;panY=0;paintZoom()}
+function closeZoom(){zoom.classList.remove('open');document.body.classList.remove('zoom-open');resetZoom()}
+document.addEventListener('click',e=>{
+const photo=e.target.closest('.card .pic img');
+if(!photo||zoom.contains(photo))return;
+zoomPhoto.src=photo.currentSrc||photo.src;zoomPhoto.alt=photo.alt;resetZoom();zoom.classList.add('open');document.body.classList.add('zoom-open');
+});
+zoom.querySelector('.zoom-close').onclick=closeZoom;
+zoom.addEventListener('click',e=>{if(e.target===zoom)closeZoom()});
+zoomPhoto.addEventListener('click',e=>{if(dragging)return;zoomScale=zoomScale>1?1:2.5;panX=0;panY=0;paintZoom()});
+zoomPhoto.addEventListener('wheel',e=>{e.preventDefault();zoomScale=Math.max(1,Math.min(5,zoomScale+(e.deltaY<0?.35:-.35)));if(zoomScale===1){panX=0;panY=0}paintZoom()},{passive:false});
+zoomPhoto.addEventListener('pointerdown',e=>{if(zoomScale<=1)return;dragging=true;dragStartX=e.clientX-panX;dragStartY=e.clientY-panY;zoomPhoto.setPointerCapture(e.pointerId)});
+zoomPhoto.addEventListener('pointermove',e=>{if(!dragging)return;panX=e.clientX-dragStartX;panY=e.clientY-dragStartY;paintZoom()});
+zoomPhoto.addEventListener('pointerup',()=>{setTimeout(()=>{dragging=false},0)});
+zoomPhoto.addEventListener('pointercancel',()=>{dragging=false});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&zoom.classList.contains('open'))closeZoom()});
 
 const wa=m=>`https://wa.me/${PHONE}?text=${encodeURIComponent(m)}`;
 ['wa0','wa1'].forEach(i=>document.getElementById(i).href=wa('السلام عليكم، عايز استفسر عن منتجاتكم'));
