@@ -145,12 +145,12 @@ const P=[
 {t:'safe',size:'small',uses:["home","pharmacy","shop","supermarket"],n:'خزنة كراون – موديل مؤقت 10',images:["WhatsApp Image 2026-11-01 at 14.34.17.jpeg","WhatsApp Image 2026-11-01 at 14.34.19.jpeg"],f:[]},
 {t:'safe',size:'small',uses:["home","pharmacy","shop","supermarket"],n:'خزنة كراون – موديل مؤقت 11',images:["WhatsApp Image 2026-11-01 at 14.43.18.jpeg","WhatsApp Image 2026-11-01 at 14.43.182.jpeg","WhatsApp Image 2026-11-01 at 14.43.183.jpeg"],f:[]},
 {t:'safe',size:'small',uses:["home","pharmacy","shop","supermarket"],n:'خزنة كراون – موديل مؤقت 12',images:["WhatsApp Image 2026-11-01 at 14.46.051.jpeg","WhatsApp Image 2026-11-01 at 14.46.181.jpeg"],f:[]},
-{t:'safe',size:'large',uses:["villa","office","exchange","bank"],n:'خزنة كراون – موديل مؤقت 13',images:["WhatsApp Image 2026-11-01 at 17.46.2131.jpeg","WhatsApp Image 2026-11-01 at 17.46.2221.jpeg"],f:[]},
-{t:'safe',size:'large',uses:["villa","office","exchange","bank"],n:'خزنة كراون – موديل مؤقت 14',images:["WhatsApp Image 2026-11-01 at 17.46.4012.jpeg","WhatsApp Image 2026-11-01 at 17.46.4031.jpeg"],f:[]},
+{t:'safe',size:'large',uses:["office","exchange","bank"],n:'خزنة كراون – موديل مؤقت 13',images:["WhatsApp Image 2026-11-01 at 17.46.2131.jpeg","WhatsApp Image 2026-11-01 at 17.46.2221.jpeg"],f:[]},
+{t:'safe',size:'large',uses:["office","exchange","bank"],n:'خزنة كراون – موديل مؤقت 14',images:["WhatsApp Image 2026-11-01 at 17.46.4012.jpeg","WhatsApp Image 2026-11-01 at 17.46.4031.jpeg"],f:[]},
 {t:'safe',size:'small',uses:["home","pharmacy","shop","supermarket"],n:'خزنة كراون بقفلين – موديل 1',images:["=.jpeg","`.jpeg"],f:[]},
 {t:'safe',size:'small',uses:["home","pharmacy","shop","supermarket"],n:'خزنة كراون ديجيتال – موديل 2',images:["WhatsApp Image 2026-11-01 at 14.00.4s.jpeg","WhatsApp Image 2026-11-01 at 14.00.41.jpeg"],f:[]},
 {t:'safe',size:'small',uses:["home","pharmacy","shop","supermarket"],n:'خزنة كراون ديجيتال – موديل 3',images:["WhatsApp Image 2026-11-01 at 14.07.2d.jpeg","1.jpeg","2.jpeg"],f:[]},
-{t:'safe',size:'large',uses:["villa","office","exchange","bank"],n:'خزنة كراون كبيرة – موديل 4',images:["WhatsApp Image 2026-11-01 at 17.47.43113.jpeg","WhatsApp Image 2026-11-01 at 17.47.44131.jpeg","WhatsApp Image 2026-11-01 at 17.47.1111.jpeg"],f:[]},
+{t:'safe',size:'large',uses:["office","exchange","bank"],n:'خزنة كراون كبيرة – موديل 4',images:["WhatsApp Image 2026-11-01 at 17.47.43113.jpeg","WhatsApp Image 2026-11-01 at 17.47.44131.jpeg","WhatsApp Image 2026-11-01 at 17.47.1111.jpeg"],f:[]},
 {t:'safe',size:'small',uses:['home','pharmacy','shop','supermarket'],n:'خزنة كراون SB16 – ديجيتال أو 2 كالون',img:'crown-sb16.jpg.jpeg',images:['crown-sb16.jpg.jpeg','crown-sb16.jpg (2).jpeg'],f:['مقاومة للحريق لمدة ساعة عند 1200° وفق المواصفات المعلنة','قفل ديجيتال ومفتاح طوارئ، ومتاح موديل 2 كالون','وزن 35 كجم ورف متحرك | مقاس 32 × 42 × 32 سم']}
 ];
 
@@ -191,7 +191,7 @@ const card=p=>`<div class="card"><div class="pic">${p.images?`<div class="galler
 
 document.getElementById('grid').addEventListener('click',e=>{const btn=e.target.closest('.gallery-prev,.gallery-next');if(!btn)return;const gallery=btn.closest('.gallery');const images=gallery.dataset.images.split('|').map(decodeURIComponent);const image=gallery.querySelector('img');let index=images.indexOf(image.getAttribute('src'));index=(index+(btn.classList.contains('gallery-next')?1:-1)+images.length)%images.length;image.src=images[index];gallery.querySelector('.gallery-counter').textContent=(index+1)+' / '+images.length;});
 let flt='all';
-const USES=[['all','كل الخزن'],['small','خزن صغيرة'],['large','خزن كبيرة'],['home','المنزل والشقق'],['pharmacy','الصيدليات'],['shop','المحلات'],['supermarket','السوبر ماركت'],['villa','الفلل'],['office','الشركات والمكاتب'],['exchange','الصرافة'],['bank','البنوك']];
+const USES=[['all','كل الخزن'],['small','خزن صغيرة'],['large','خزن كبيرة'],['home','المنزل والشقق'],['pharmacy','الصيدليات'],['shop','المحلات'],['supermarket','السوبر ماركت'],['office','الشركات والمكاتب'],['exchange','الصرافة'],['bank','البنوك']];
 function eligible(p,k){return k==='all'||p.size===k||(p.uses||[]).includes(k)}
 function grid(){document.getElementById('grid').innerHTML=P.filter(p=>eligible(p,flt)).map(card).join('')||'<p class="sub">سيتم إضافة الخزن المناسبة لهذا القسم قريبًا.</p>'}
 document.getElementById('chips').innerHTML=USES.map(([k,v])=>`<button class="chip${k==='all'?' on':''}" data-k="${k}">${v}</button>`).join('');
@@ -202,7 +202,7 @@ document.querySelector('nav').onclick=e=>{const a=e.target.closest('[data-f]');i
 
 /* الترشيح حسب مكان الاستخدام والحجم */
 const Q=[
-{q:'هتستخدم الخزنة فين؟',o:[['منزل أو شقة','home'],['صيدلية','pharmacy'],['محل','shop'],['سوبر ماركت','supermarket'],['فيلا','villa'],['شركة أو مكتب','office'],['صرافة','exchange'],['بنك','bank']]},
+{q:'هتستخدم الخزنة فين؟',o:[['منزل أو شقة','home'],['صيدلية','pharmacy'],['محل','shop'],['سوبر ماركت','supermarket'],['شركة أو مكتب','office'],['صرافة','exchange'],['بنك','bank']]},
 {q:'إيه حجم الخزنة اللي تفضله؟',o:[['صغيرة','small'],['كبيرة','large']]}
 ];
 let step=0,A=[];
